@@ -35,7 +35,8 @@ CelebA is particularly suitable for training DCGAN models as it provides a rich 
 
 *References:*
 - https://github.com/pytorch/examples/tree/main/dcgan
-- 
+- https://github.com/cankocagil/DCGAN
+- https://www.kaggle.com/datasets/jessicali9530/celeba-dataset
 
 ---
 
