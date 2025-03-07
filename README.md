@@ -9,7 +9,7 @@ DCGAN consists of two neural networks:
 
 Both networks are trained in an adversarial manner, where the Generator aims to produce images that can fool the Discriminator, while the Discriminator improves its ability to differentiate real from fake images. This adversarial process leads to the generation of high-quality and realistic images over time.
 
-![image](https://github.com/user-attachments/assets/bdc57d42-68ac-424a-a233-081db7c6cfc4)
+![image](https://github.com/user-attachments/assets/026cd14b-efb3-4414-ad29-4bf4331b806a)
 
 
 ## Key Features of DCGAN
