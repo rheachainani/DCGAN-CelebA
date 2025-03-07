@@ -33,5 +33,9 @@ The **CelebFaces Attributes Dataset (CelebA)** is a large-scale dataset containi
 
 CelebA is particularly suitable for training DCGAN models as it provides a rich and diverse set of human faces, enabling the Generator to learn and synthesize realistic facial features.
 
+*References:*
+- https://github.com/pytorch/examples/tree/main/dcgan
+- 
+
 ---
 
