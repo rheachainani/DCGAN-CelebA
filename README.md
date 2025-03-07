@@ -12,26 +12,53 @@ Both networks are trained in an adversarial manner, where the Generator aims to 
 ![image](https://github.com/user-attachments/assets/026cd14b-efb3-4414-ad29-4bf4331b806a)
 
 
-## Key Features of DCGAN
-- Uses deep convolutional layers instead of fully connected layers, improving spatial feature learning.
-- Leverages batch normalization for stable training and faster convergence.
-- Uses Leaky ReLU activation in the Discriminator to prevent vanishing gradients.
-- Employs transposed convolution layers (also called deconvolution) in the Generator to upsample noise into a high-resolution image.
-
-## Applications
-- Image synthesis and enhancement
-- Face generation and manipulation
-- Data augmentation for deep learning models
-- Artwork and style transfer
-- Super-resolution imaging
-
-## Dataset: CelebA
-The **CelebFaces Attributes Dataset (CelebA)** is a large-scale dataset containing over 200,000 celebrity images with various facial attributes. It is widely used for facial recognition, attribute classification, and generative modeling tasks. The dataset provides:
+## Dataset and Preprocessing
+This implementation uses the **CelebA** dataset, a large-scale dataset containing over 200,000 celebrity images with various facial attributes. It is widely used for facial recognition, attribute classification, and generative modeling tasks. The dataset provides:
 - High-quality images of human faces.
 - 40 different attribute labels (e.g., gender, glasses, smiling, etc.).
 - Diverse poses, backgrounds, and lighting conditions.
 
 CelebA is particularly suitable for training DCGAN models as it provides a rich and diverse set of human faces, enabling the Generator to learn and synthesize realistic facial features.
+
+The preprocessing steps include:
+
+1. **Loading the Dataset:**
+   - The dataset is loaded using a DataLoader for batch processing.
+   - Images are resized and transformed into tensors.
+
+2. **Transformations Applied:**
+   - Resizing images to **64x64** pixels.
+   - Normalizing pixel values to the range **[-1,1]**.
+   - Converting images to **PyTorch tensors** for model training.
+
+## Training the Model
+1. **Initialize the Generator and Discriminator:**
+   - The generator (`netG`) and discriminator (`netD`) models are defined and initialized.
+   - If multiple GPUs are available, `nn.DataParallel` is used.
+
+2. **Loss Function and Optimizers:**
+   - **Binary Cross Entropy Loss (BCELoss)** is used.
+   - **Adam Optimizer** is used with a learning rate from `config['lr']` and betas `(config['beta1'], 0.999)`.
+
+3. **Training Loop:**
+   - The discriminator is trained to differentiate between real and fake images.
+   - The generator is trained to fool the discriminator.
+   - Loss values for both models are tracked.
+   - Model checkpoints are saved after training.
+
+## Testing the Model
+- The model generates fake images by passing random noise (`fixed_noise`) through the generator.
+- Images are saved as a grid using `vutils.make_grid()`.
+- The trained model can be loaded for generating images without retraining.
+
+## Expected Outputs
+- Over multiple epochs, the generator produces increasingly realistic face images.
+- Initially, images are noisy and blurry, but as training progresses, facial features become clearer.
+- Loss values for the generator and discriminator stabilize as the model converges.
+
+---
+
+**Note:** This repository contains only the implementation (`.ipynb` file). The CelebA dataset should be downloaded or imported separately.
 
 *References:*
 - https://github.com/pytorch/examples/tree/main/dcgan
